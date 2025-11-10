@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 function App() {
 
+  const [newTask, setNewTask] = useState()
+
   const items = [
     { id: 1, title: "Introduzione a JavaScript" },
     { id: 2, title: "Fondamenti di HTML e CSS" },
@@ -10,12 +12,19 @@ function App() {
     { id: 5, title: "Progetti pratici con Arduino" }
   ];
 
+  function handleChange(e) {
+    setNewTask(e.target.value)
+  }
+
   return (
     <>
 
       <header><h1>To-do List</h1></header>
       <main>
-        <form>
+        <form >
+
+          <input type="text" placeholder='New Task' value={newTask} onChange={handleChange} />
+
           <ul>
             {
               items.map(item => (
@@ -23,6 +32,7 @@ function App() {
               ))
             }
           </ul>
+
         </form>
       </main>
 
