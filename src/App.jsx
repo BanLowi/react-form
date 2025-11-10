@@ -1,8 +1,7 @@
 import { useState } from 'react'
 
 function App() {
-
-  const [newTask, setNewTask] = useState()
+  /* state variable for user input */
 
   const items = [
     { id: 1, title: "Introduzione a JavaScript" },
@@ -12,8 +11,31 @@ function App() {
     { id: 5, title: "Progetti pratici con Arduino" }
   ];
 
+  const [newTask, setNewTask] = useState("")
+  const [tasks, setTasks] = useState(items)
+
   function handleChange(e) {
+    console.log(e);
     setNewTask(e.target.value)
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    console.log(newTask);
+
+    if (newTask.length > 0) {
+      console.log(newTask);
+      const obj = {
+        id: tasks.length + 1,
+        title: newTask
+      }
+      console.log(obj.id);
+
+      const taskList = [...tasks, obj];
+      setTasks(taskList)
+      console.log(taskList);
+    }
+
   }
 
   return (
@@ -21,19 +43,25 @@ function App() {
 
       <header><h1>To-do List</h1></header>
       <main>
-        <form >
+        <div className="container">
+          <form onSubmit={handleSubmit}>
 
-          <input type="text" placeholder='New Task' value={newTask} onChange={handleChange} />
 
+            <div className="input-group mb-3">
+              <input type="text" className="form-control" value={newTask} onChange={handleChange} placeholder="New Task" aria-describedby="button-addon2" />
+              <button className="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
+            </div>
+
+
+          </form>
           <ul>
             {
-              items.map(item => (
+              tasks.map(item => (
                 <li key={item.id}>{item.title}</li>
               ))
             }
           </ul>
-
-        </form>
+        </div>
       </main>
 
     </>
