@@ -18,6 +18,21 @@ function App() {
       <main>
         <div className='container'>
 
+          {/* input form per aggiungere un nuovo articolo */}
+          <div class="mb-3">
+            <label for="" className="form-label">Add new article:</label>
+            <input
+              type="text"
+              className="form-control"
+              name=""
+              id=""
+              placeholder="New Article"
+            />
+
+          </div>
+
+
+          {/* stampo in pagina la lista di articoli */}
           <ul className='list-group'>
             {
               items.map(item => {
