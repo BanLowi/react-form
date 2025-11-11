@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 function App() {
-  /* state variable for user input */
 
+  // array di oggetti
   const items = [
     { id: 1, title: "Introduzione a JavaScript" },
     { id: 2, title: "Fondamenti di HTML e CSS" },
@@ -13,6 +13,21 @@ function App() {
 
   return (
     <>
+      <header><h1>Lorenzo's Blog</h1></header>
+
+      <main>
+        <div className='container'>
+
+          <ul className='list-group'>
+            {
+              items.map(item => {
+                return <li key={item.id} className='list-group-item'>{item.title}</li>
+              })
+            }
+          </ul>
+
+        </div>
+      </main>
 
     </>
   )
