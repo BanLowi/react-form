@@ -11,6 +11,21 @@ function App() {
     { id: 5, title: "Progetti pratici con Arduino" }
   ];
 
+  // variabili di stato
+  const [inputValue, setInputValue] = useState("")
+  const [itemsState, setItemsState] = useState(items)
+
+  // gestione dell'invio dati dall'input allo suo useState
+  function handleChange(e) {
+    return setInputValue(e.target.value)
+  }
+
+  // gestione submit del form
+  function handleSubmit(e) {
+    e.preventDefault()
+
+  }
+
   return (
     <>
       <header><h1>Lorenzo's Blog</h1></header>
@@ -19,23 +34,25 @@ function App() {
         <div className='container'>
 
           {/* input form per aggiungere un nuovo articolo */}
-          <div class="mb-3">
-            <label for="" className="form-label">Add new article:</label>
-            <input
-              type="text"
-              className="form-control"
-              name=""
-              id=""
-              placeholder="New Article"
-            />
-
-          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="inputNewArt" className="form-label">Add new article:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="inputNewArt"
+                placeholder="New Article"
+                value={inputValue}
+                onChange={handleChange}
+              />
+            </div>
+          </form>
 
 
           {/* stampo in pagina la lista di articoli */}
           <ul className='list-group'>
             {
-              items.map(item => {
+              itemsState.map(item => {
                 return <li key={item.id} className='list-group-item'>{item.title}</li>
               })
             }
